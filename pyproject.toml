@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "productreviews"
+version = "0.2.0"
+description = "Crawl the web for product mentions, analyze sentiment, and surface insights for product creators."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = []
+keywords = ["sentiment", "reddit", "hackernews", "product", "crawler"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "praw>=7.7.0",
+    "requests>=2.31.0",
+    "ddgs>=9.0.0",
+    "vaderSentiment>=3.3.2",
+    "python-dotenv>=1.0.0",
+    "rich>=13.7.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff>=0.1.0"]
+
+[project.scripts]
+productreviews = "productreviews:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["productreviews", "sources*", "sentiment*", "insights*", "utils*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
